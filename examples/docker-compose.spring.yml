@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+
+  spring:
+    build:
+      context: ./spring
+      dockerfile: Dockerfile.prod
+    image: fredsonchaves07/spring-boot-example:prod
+    container_name: spring
+    networks:
+      - spring-network
+    
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile.prod
+    image: fredsonchaves07/nginx:prod
+    container_name: nginx
+    networks:
+      - spring-network
+    ports:
+      - 80:80
+
+networks:
+  spring-network:
+    driver: bridge
