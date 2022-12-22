@@ -1,4 +1,5 @@
 const express = require('express')
+const path = require('path');
 const app = express()
 const port = 3000
 const config = {
@@ -14,7 +15,7 @@ const connection = mysql.createConnection(config)
 //connection.query(sql)
 
 app.get("/", (req, res) => {
-    res.send('<h1>Hello Full Cycle</h1>')
+    res.sendFile(path.join(__dirname+'/index.html'))
 })
 
 app.listen(port, () => {
