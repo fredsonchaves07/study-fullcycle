@@ -12,7 +12,6 @@ const mysql = require('mysql')
 const connection = mysql.createConnection(config)
 //const sql = `insert into people(name) values('Fred')`
 //connection.query(sql)
-//connection.end()
 
 app.get("/", (req, res) => {
     res.send('<h1>Hello Full Cycle</h1>')

@@ -2,8 +2,8 @@
 
 ## Passo para rodar o container
 
-- Execute o comando abaixo para executar o container
+- Execute o comando abaixo para executar os containers
 
 ```bash
-docker run --rm --name golang fredsonchaves07/node
+docker compose-up --build -d
 ```
