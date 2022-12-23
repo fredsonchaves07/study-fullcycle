@@ -1,0 +1,16 @@
+{
+    "name": "nodeapp",
+    "version": "1.0.0",
+    "description": "Node app example",
+    "author": "Fredson Chaves <fredsonchaves07@gmail.com>",
+    "main": "index.js",
+    "scripts": {
+      "start": "nodemon index.js"
+    },
+    "dependencies": {
+      "express": "^4.16.1",
+      "mysql": "^2.18.1",
+      "nunjucks": "^3.2.3",
+      "nodemon": "2.0.20"
+    }
+  }

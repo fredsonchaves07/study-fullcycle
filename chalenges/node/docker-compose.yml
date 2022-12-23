@@ -2,6 +2,19 @@ version: '3'
 
 services:
 
+  db:
+    image: mysql:5.7
+    command: --innodb-use-native-aio=0
+    container_name: db
+    tty: true
+    environment:
+      - MYSQL_DATABASE=nodedb
+      - MYSQL_ROOT_PASSWORD=root
+    networks:
+      - app-network
+    volumes:
+      - ./scripts/create_table_people.sql:/docker-entrypoint-initdb.d/0_init.sql
+
   nginx:
     build:
       context: ./nginx
@@ -20,26 +33,14 @@ services:
     networks:
       - app-network
     volumes:
-      - .:/user/src/app
+      - ./app:/usr/app
     tty: true
     container_name: app
     ports:
       - 3000:3000
+    entrypoint: npm start
     depends_on:
       - db
-
-  db:
-    image: mysql:5.7
-    command: --innodb-use-native-aio=0
-    container_name: db
-    tty: true
-    environment:
-      - MYSQL_DATABASE=nodedb
-      - MYSQL_ROOT_PASSWORD=root
-    networks:
-      - app-network
-    volumes:
-      - ./scripts/create_table_people.sql:/docker-entrypoint-initdb.d/0_init.sql
 
 networks:
   app-network:
