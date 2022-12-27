@@ -22,7 +22,7 @@ services:
     networks:
       - app-network
     ports:
-      - 80:80
+      - 8080:80
     depends_on:
       - app
     tty: true
@@ -32,13 +32,11 @@ services:
       .
     networks:
       - app-network
-    volumes:
-      - ./app:/usr/app
     tty: true
     container_name: app
     ports:
       - 3000:3000
-    entrypoint: npm start
+    entrypoint: dockerize -wait tcp://db:3306 -timeout 20s docker-entrypoint.sh npm start
     depends_on:
       - db
 
