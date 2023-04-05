@@ -1,2 +1,2 @@
-# docker-study-fullcycle
-Repositório de estudos de docker utilizado nos estudos do fullcycle
+# study-fullcycly
+Repositório de estudos do curso Full Cycle
