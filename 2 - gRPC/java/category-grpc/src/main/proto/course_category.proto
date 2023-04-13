@@ -1,6 +1,9 @@
 syntax = "proto3";
-package pb;
-option go_package = "internal/pb";
+
+option java_package = "com.fredsonchaves07";
+option java_multiple_files = true;
+
+package com.fredsonchaves07;
 
 message Category {
     string id = 1;
