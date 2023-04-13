@@ -15,7 +15,8 @@ public class CategoryGrpc extends CategoryServiceGrpc.CategoryServiceImplBase {
     @Autowired
     private CategoryService service;
 
-    public void create(CreateCategoryRequest categoryRequest, StreamObserver<CategoryResponse> responseObserver) {
+    @Override
+    public void createCategory(CreateCategoryRequest categoryRequest, StreamObserver<CategoryResponse> responseObserver) {
         responseObserver.onNext(service.create(categoryRequest));
         responseObserver.onCompleted();
     }
