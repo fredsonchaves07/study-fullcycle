@@ -16,16 +16,7 @@ public class CategoryGrpc extends CategoryServiceGrpc.CategoryServiceImplBase {
     private CategoryService service;
 
     public void create(CreateCategoryRequest categoryRequest, StreamObserver<CategoryResponse> responseObserver) {
-        com.fredsonchaves07.entity.Category category = new com.fredsonchaves07.entity.Category(
-                categoryRequest.getName(), categoryRequest.getDescription()
-        );
-        Category categoryGrpc = Category.newBuilder()
-                .setId(category.getId().toString())
-                .setName(category.getName())
-                .setDescription(category.getDescription())
-                .build();
-        CategoryResponse categoryResponse = CategoryResponse.newBuilder().setCategory(categoryGrpc).build();
-        responseObserver.onNext(categoryResponse);
+        responseObserver.onNext(service.create(categoryRequest));
         responseObserver.onCompleted();
     }
 }
