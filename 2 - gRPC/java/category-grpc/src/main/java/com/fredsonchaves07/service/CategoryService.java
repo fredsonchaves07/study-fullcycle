@@ -1,6 +1,5 @@
 package com.fredsonchaves07.service;
 
-import com.fredsonchaves07.CategoryResponse;
 import com.fredsonchaves07.CreateCategoryRequest;
 import com.fredsonchaves07.entity.Category;
 import com.fredsonchaves07.repository.CategoryRepository;
@@ -15,7 +14,7 @@ public class CategoryService  {
     private CategoryRepository categoryRepository;
 
     @Transactional
-    public CategoryResponse create(CreateCategoryRequest categoryRequest) {
+    public com.fredsonchaves07.Category create(CreateCategoryRequest categoryRequest) {
         String name = categoryRequest.getName();
         String description = categoryRequest.getDescription();
         Category category = categoryRepository.save(new Category(name, description));
@@ -24,6 +23,6 @@ public class CategoryService  {
                 .setName(category.getName())
                 .setDescription(category.getDescription())
                 .build();
-        return CategoryResponse.newBuilder().setCategory(categoryGrpc).build();
+        return categoryGrpc;
     }
 }

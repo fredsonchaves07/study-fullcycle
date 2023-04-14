@@ -1,7 +1,6 @@
 package com.fredsonchaves07.grpc;
 
 import com.fredsonchaves07.Category;
-import com.fredsonchaves07.CategoryResponse;
 import com.fredsonchaves07.CategoryServiceGrpc;
 import com.fredsonchaves07.CreateCategoryRequest;
 import com.fredsonchaves07.service.CategoryService;
@@ -16,7 +15,7 @@ public class CategoryGrpc extends CategoryServiceGrpc.CategoryServiceImplBase {
     private CategoryService service;
 
     @Override
-    public void createCategory(CreateCategoryRequest categoryRequest, StreamObserver<CategoryResponse> responseObserver) {
+    public void createCategory(CreateCategoryRequest categoryRequest, StreamObserver<Category> responseObserver) {
         responseObserver.onNext(service.create(categoryRequest));
         responseObserver.onCompleted();
     }
