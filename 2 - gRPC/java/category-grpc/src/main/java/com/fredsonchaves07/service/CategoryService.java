@@ -1,6 +1,5 @@
 package com.fredsonchaves07.service;
 
-import com.fredsonchaves07.CategoryGetRequest;
 import com.fredsonchaves07.CategoryList;
 import com.fredsonchaves07.CreateCategoryRequest;
 import com.fredsonchaves07.entity.Category;
@@ -9,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -31,6 +29,22 @@ public class CategoryService  {
                 .build();
     }
 
+    @Transactional
+    public CategoryList create(List<CreateCategoryRequest> createCategoryGrpcList) {
+        List<Category> categories = createCategoryGrpcList.stream()
+                        .map(category -> new Category(
+                                category.getName(), category.getDescription()
+                        )).toList();
+        categoryRepository.saveAll(categories);
+        List<com.fredsonchaves07.Category> categoriesGrpc = categories.stream()
+                .map(category -> com.fredsonchaves07.Category.newBuilder()
+                        .setId(category.getId().toString())
+                        .setName(category.getName())
+                        .setDescription(category.getDescription())
+                        .build()).toList();
+        return CategoryList.newBuilder().addAllCategories(categoriesGrpc).build();
+    }
+
     public CategoryList list() {
         List<Category> categories = categoryRepository.findAll();
         List<com.fredsonchaves07.Category> categoriesGrpc = categories.stream()
@@ -50,4 +64,5 @@ public class CategoryService  {
                 .setDescription(category.getDescription())
                 .build();
     }
+
 }
