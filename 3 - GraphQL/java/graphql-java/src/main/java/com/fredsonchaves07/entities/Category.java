@@ -28,6 +28,11 @@ public class Category {
         this.courses.add(course);
     }
 
+    public Category(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
+
     public String getDescription() {
         return description;
     }
