@@ -1,0 +1,9 @@
+{
+    "services": {
+        "id": "nginx",
+        "name": "nginx",
+        "tags": ["web"],
+        "port": 80,
+        "disable_compat_1.9": true
+    }
+}
